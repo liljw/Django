@@ -9,6 +9,7 @@
 </p>
 
 <div>
+    {% if profile_user != request.user %}
     <form action="{% url 'accounts:follow' profile_user.username %}" method="POST">
         {% csrf_token %}
         {% if is_follow %}
@@ -17,10 +18,10 @@
         <button>팔로우</button>
         {% endif %}
     </form>
+    {% endif %}
 </div>
 
 <h2>작성 글 목록</h2>
-
 <ul>
     {% for article in profile_user.article_set.all %}
     <li>
@@ -32,7 +33,6 @@
 </ul>
 
 <h2>작성 댓글 목록</h2>
-
 <ul>
     {% for reply in profile_user.reply_set.all %}
     <li>
@@ -43,8 +43,9 @@
     {% endfor %}
 </ul>
 
-<h2>좋아요 한 게시글</h2>
 
+{% if profile_user == request.user %}
+<h2>좋아요 한 게시글</h2>
 <ul>
     {% for like_article in profile_user.like_articles.all %}
     <li>
@@ -54,8 +55,7 @@
     </li>
     {% endfor %}
 </ul>
-
-
+{% endif %}
 
 
 {% endblock content %}

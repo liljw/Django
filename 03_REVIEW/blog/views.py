@@ -127,3 +127,15 @@ def like_article(request, article_pk):
         article.like_users.add(user)
     return redirect('blog:detail', article.pk)
 
+@login_required
+@require_safe
+def feed(request):
+    user = request.user
+    stars_articles = []
+    for star in user.stars.all():
+        for article in star.article_set.all():
+            stars_articles.append(article)
+    return render(request, 'blog/feed.html', {
+        'stars_articles': stars_articles,
+    })
+

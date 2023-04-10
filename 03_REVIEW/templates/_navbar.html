@@ -9,6 +9,9 @@
             <a href="{% url 'accounts:profile' request.user.username %}">My Page</a>
         </li>
         <li>
+            <a href="{% url 'blog:feed' %}">Feed</a>
+        </li>
+        <li>
             <a href="{% url 'blog:create' %}">Create New Article</a>
         </li>
         <li>

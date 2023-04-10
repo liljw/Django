@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Feed</h1>
+
+<div>
+    <ul>
+        {% for stars_article in stars_articles %}
+        <li>
+            <a href="{% url 'accounts:profile' stars_article.user.username %}">
+                {{ stars_article.user }}: 
+            </a>
+            <a href="{% url 'blog:detail' stars_article.pk %}">
+                {{ stars_article.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock content %}

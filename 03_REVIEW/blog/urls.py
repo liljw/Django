@@ -34,5 +34,7 @@ urlpatterns = [
     # 1/like_article - 특정 게시글에 좋아요
     path('<int:article_pk>/like_article', views.like_article, name='like_article'),
     
+    # /feed/ - 팔로우한 사람들의 게시글만 보이는 피드 기능 제공
+    path('feed/', views.feed, name='feed'),
 
 ]

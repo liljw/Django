@@ -4,11 +4,19 @@
     <ul>
         {% for reply in replies %}
         <li>
+            <a href="{% url 'accounts:profile' reply.user.username %}">
+                {{ reply.user }}: 
+            </a>
             {{ reply.content }}
+
             {% if reply.user == request.user %}
-            <form action="{% url 'blog:delete_reply' article.pk reply.pk %}" method="POST">
+            <form 
+            action="{% url 'blog:delete_reply' article.pk reply.pk %}" 
+            method="POST"
+            style="display: inline-block;"
+            >
                 {% csrf_token %}
-                <button>삭제</button>
+                <button onclick="return confirm('댓글을 삭제하시겠습니까?')">삭제</button>
             </form>
             {% endif %}
         </li>

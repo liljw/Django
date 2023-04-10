@@ -9,7 +9,9 @@
     <ul>
         {% for article in articles %}
         <li>
-            {{ article.user }}: 
+            <a href="{% url 'accounts:profile' article.user.username %}">
+                {{ article.user }}: 
+            </a>
             <a href="{% url 'blog:detail' article.pk %}">
                 {{ article.title }}
             </a>
