@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Your Info</h1>
+{% comment %} action 뒤에 method를 안써주면 default로 GET으로 넘어간다. {% endcomment %}
+<form action="{% url 'pong' %}" method="POST">
+    {% csrf_token %}
+    <div>
+        <label for="myname">이름: </label>
+        <input type="text" id="myname" name="myname">
+        {% comment %} input태그에 name이 곧 딕셔너리의 key값 {% endcomment %}
+    </div>
+
+    <div>
+        <label for="age">나이: </label>
+        <input type="number", id="age", name="age">
+    </div>
+
+    <div>
+        <label for="mbti">MBTI: </label>
+        <input type="text" id="mbti", name="mbti">
+    </div>
+
+    <div>
+        <input type="submit" value="얍!">
+    </div>
+</form>
+
+
+{% endblock content %}
+
+

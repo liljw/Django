@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>회차정보와 숫자 7개를 입력하세요</h1>
+<form action="{% url 'lotto_out' %}">
+    <div>
+        <label for="drwno">회차정보: </label>
+        <input type="number" id="drwno" name="drwno">
+    </div>
+
+    <div>
+        <label for="my_numbers">숫자 6개를 공백과 함께 입력하세요</label>
+        <input type="text" id="my_numbers" name="my_numbers">
+    </div>
+
+    <div>
+        <label for="my_bonus_number">보너스 숫자를 입력하세요</label>
+        <input type="text" id="my_bonus_number" name="my_bonus_number">
+    </div>
+    
+    <div>
+        <input type="submit" value="얍!">
+    </div>
+</form>
+
+
+{% endblock content %}

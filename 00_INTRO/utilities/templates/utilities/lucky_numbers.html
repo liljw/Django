@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>lucky_numbers</h1>
+
+<ul>  
+    {% for num in lucky_numbers %}
+    <li>{{ num }}</li>
+    {% endfor %}
+</ul>
+<!-- {{ 출력 }} 출력하고 싶은 거는 중괄호 두 개, 나머지는 다 중괄호, 퍼센트로!-->
+<p>{{ lucky_numbers }}</p>
+
+{% endblock content %}

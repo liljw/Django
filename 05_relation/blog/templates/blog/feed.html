@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <ul>
+        {% for stars_posting in stars_postings %}
+        <li>
+            {{ stars_posting.user }}: 
+            <a href="{% url 'blog:posting_detail' stars_posting.pk %}">
+                {{ stars_posting.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+
+{% endblock content %}

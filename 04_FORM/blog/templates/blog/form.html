@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% comment %} form의 액션 값이 비어있으면, 현재 form을 보고 있는 url로 보낸다. {% endcomment %}
+{% comment %} 지금 현재 url로 요청을 보낸다. {% endcomment %}
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <div>
+        <button>GO</button>
+    </div>
+</form>
+
+
+{% endblock content %}

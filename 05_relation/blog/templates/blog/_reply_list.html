@@ -1,0 +1,28 @@
+<div>
+    <p>댓글 목록</p>
+    {% if replies %}
+    <ul>
+        {% for reply in replies %}
+        <li>
+            <a href="{% url 'accounts:profile' posting.user %}">
+                {{ reply.user }}: 
+            </a>
+            {{ reply.content }}
+
+            {% if request.user == reply.user %}
+            <form 
+            action="{% url 'blog:delete_reply' posting.pk reply.pk %}" 
+            method="POST"
+            style="display: inline-block;"
+            >
+            {% csrf_token %}
+            <button onclick="return confirm('댓글 삭제?')">삭제</button>
+            </form>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>첫 댓글을 작성해 주세요 :)</p>
+    {% endif %}
+</div>

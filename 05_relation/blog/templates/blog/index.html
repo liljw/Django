@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Posting Index </h1>
+
+<ul>
+    {% for posting in postings %}
+    <li>
+        <a href="{% url 'accounts:profile' posting.user %}">
+            {{ posting.user }} : 
+        </a>
+        <a href="{% url 'blog:posting_detail' posting.pk %}">
+            {{ posting.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Question Index</h1>
+
+<ul>
+    {% for question in questions %}
+    <li>
+        <a href="{% url 'qna:detail' question.pk %}">
+            {{ question.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+
+{% endblock content %}

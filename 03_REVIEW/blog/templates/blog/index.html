@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>Blog Index</h1>
+
+<div>
+    <ul>
+        {% for article in articles %}
+        <li>
+            {{ article.user }}: 
+            <a href="{% url 'blog:detail' article.pk %}">
+                {{ article.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock content %}

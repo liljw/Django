@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>This week lotto info</h1>
+
+<ul>
+    {% for num in real_numbers%}
+        <li>{{ num }}</li>
+    {% endfor %}
+</ul>
+<p>
+    bonus: {{ bonus_number }}
+</p>
+
+{% endblock content %}

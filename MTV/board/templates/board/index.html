@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Board - Index</h1>
+
+<ul>
+    {% for notice in notices %}
+    <li>
+        <a href="/board/{{ notice.pk }}/">
+            {{ notice.title }}
+        </a>
+     </li>
+    {% endfor %}
+</ul>
+
+
+
+
+
+{% endblock content %}

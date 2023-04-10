@@ -1,0 +1,33 @@
+<nav>
+    <ul>
+        <li>{{ request.user }}님 안녕하세요!</li>
+        {% comment %} 인증 여부 상관없이 보임 {% endcomment %}
+        <li>
+            <a href="{% url 'blog:posting_index' %}">Blog Home</a>
+        </li>
+        {% comment %} 인증(로그인)된 사용자라면 {% endcomment %}
+        {% if request.user.is_authenticated %}
+        <li>
+            <a href="{% url 'accounts:profile' request.user.username %}">My Page</a>
+        </li>
+        <li>
+            <a href="{% url 'blog:feed' %}">Feed</a>
+        </li>
+        <li>
+            <a href="{% url 'blog:create_posting' %}">New Blog</a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:signout' %}">Logout</a>
+        </li>
+        {% comment %} 인증(로그인)되지 않은 사용자라면 {% endcomment %}
+        {% else %}
+        <li>
+            <a href="{% url 'accounts:signin' %}">Login</a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:signup' %}">Signup</a>
+        </li>
+
+        {% endif %}
+    </ul>
+</nav>
