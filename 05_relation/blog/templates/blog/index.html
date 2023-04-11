@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
 
 <h1> Posting Index </h1>
 
 <ul>
-    {% for posting in postings %}
+    {% for posting in page_obj %}
     <li>
         <a href="{% url 'accounts:profile' posting.user %}">
             {{ posting.user }} : 
@@ -17,6 +18,9 @@
     {% endfor %}
 </ul>
 
+<div class="d-flex justify-content-center mt-5">
+    {% bootstrap_pagination page_obj %}
+</div>
 
 
 {% endblock content %}

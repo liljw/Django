@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_extensions',
+    'bootstrap5',
 
     'one_to_many',
+    'many_to_many',
+    
     'blog',
     'accounts',
-    'many_to_many',
     
 ]
 

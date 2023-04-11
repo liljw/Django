@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST, require_safe, require_http_methods
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import Count
 
 from .models import Posting, Reply
 from .forms import PostingForm, ReplyForm
@@ -24,9 +26,18 @@ def create_posting(request):
 
 @require_safe
 def posting_index(request):
-    postings = Posting.objects.all()
+
+    postings = Posting.objects.annotate(like_count=Count('like_users')).order_by('-like_count')
+
+    paginator = Paginator(postings, 10) # Show 10 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
     return render(request, 'blog/index.html', {
-        "postings": postings,
+        # "postings": postings,
+        "page_obj": page_obj
     })
 
 @require_safe
@@ -131,14 +142,14 @@ def like_posting(request, posting_pk):
 @require_safe
 def feed(request):
     user = request.user
+    # Posting 객체들 중에 user(작성자)가 user.stars.all()
+    # postings = Posting.objects.filter(user__in=user.stars.all())
     stars_postings = []
     for star in user.stars.all():
         for posting in star.posting_set.all():
             stars_postings.append(posting)
-    # print(stars_postings)
-    # [<QuerySet [<Posting: Posting object (2)>]>, <QuerySet [<Posting: Posting object (3)>]>]
-    # print(stars_postings[0][0])
     return render(request, 'blog/feed.html', {
+        # 'postings': postings,
         'stars_postings': stars_postings
     })
 
